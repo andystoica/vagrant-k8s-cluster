@@ -1,4 +1,7 @@
 #!/bin/bash
+### Script for initalisin the cluste on the master node
+### This script needs to be run manually on the master node after the machine is up
+### It generates the correct join-command script for the worker nodes
 
 
 ### Setup a cluster using kubeadm on the master node
@@ -26,6 +29,8 @@ kubectl apply -f flannel.light.yaml
 
 ### Generate worker-init.sh script
 printf '[5/5] Generating the worker init script\n'
-printf "#!/bin/bash\nsudo " > worker-init.sh
+printf "#!/bin/bash" > worker-init.sh
+printf "### DO NOT EDIT! This script is generated automatically by master-init.sh.\n\n\n" >> worker-init.sh
+printf "sudo " >> worker-init.sh
 kubeadm token create --print-join-command >> worker-init.sh
 chmod +x worker-init.sh

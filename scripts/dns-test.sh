@@ -1,4 +1,7 @@
 #!/bin/bash
+### Script for testing DNS connectivity inside Kubernetes
+### At least one worker node has to join the cluster using ./worker-init.sh script
+### Check readiness with kubectl get nodes before calling this script
 
 
 ### Test DNS functionality within K8s

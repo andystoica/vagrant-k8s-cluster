@@ -1,6 +1,9 @@
 #!/bin/bash
+### Script for installing latest compatible version of Docker 18.06
+### Adds the required repositories and isntalls the correct packages
+### Configures the Docker daemon for compatibility with Kubernetes
 
-### Install Docker CE
+
 ### Set up the repository and install packages to allow apt to use a repository over HTTPS
 apt-get update
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common

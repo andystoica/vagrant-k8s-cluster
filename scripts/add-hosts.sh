@@ -1,5 +1,9 @@
 #!/bin/bash
+### Script for appending hostname to IP resolution to /etc/hosts
+### for every Kubernetes node.
 
+
+### Display usage information if not enought argumetns have been provided
 if [ "$#" -ne 5 ]
 then
   echo
@@ -22,7 +26,8 @@ then
   exit 1
 fi
 
-## Rename arguments for more clarity
+
+### Rename arguments for more clarity
 network_prefix=$1
 start_index=$2
 count=$3
@@ -32,13 +37,11 @@ output=$5
 echo >> $output
 echo "## Added by add-hosts script from Vagrant" >> $output
 
-## Write masters host files
+
+### Write masters host files
 for ((i=0;i<$count;i++))
 do
   ip=$network_prefix$(($start_index + $i))
   host=$hostname_prefix$(($i+1))
   echo -e $ip'\t'$host | tee -a $output
 done
-
-# Clean up hosts file
-# sed -i '/127.0.1.1/d' /etc/hosts

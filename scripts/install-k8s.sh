@@ -1,7 +1,9 @@
 #!/bin/bash
+### Install Kubernetes comoponents to all nodes
+### Add the required repositories and installed the correct packages
+### Marks K8s componentes to prevent unintentioanl upgrades
 
 
-### Install Kubernetes
 ### Setup repositories and install packages to allow apt to use a repository over HTTPS
 apt-get update
 apt-get install -y apt-transport-https curl
