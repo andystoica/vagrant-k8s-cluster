@@ -7,13 +7,13 @@ then
   echo 'A simple bash utility to generate and append hostname mappings to an external file.'
   echo 
   echo 'Parameters:'
-  echo '  network_prefix  /24 network prefix to append to all IP addresses ie. 10.0.0.'
+  echo '  network_prefix  /24 network prefix to append to all IP addresses ie. 10.0.2.'
   echo '  start_index     Index to start counting from'
   echo '  count           Number of sequential hosts mappings to generate'
   echo '  hostname_prefix Partial hostname prefix to prepend to every hostname entry'
   echo '  output          File to append the entries to it. /etc/hosts'
   echo 
-  echo 'Example: add-hosts 10.0.1. 20 3 worker- /etc/hosts'
+  echo 'Example: add-hosts 10.0.2. 21 3 worker- /etc/hosts'
   echo 'would append to /etc/hosts file the following lines:'
   echo '10.0.2.21	worker-1'
   echo '10.0.2.22	worker-2'
