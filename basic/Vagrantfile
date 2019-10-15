@@ -13,9 +13,9 @@ Vagrant.configure("2") do |config|
       end
       node.vm.hostname = "master"
       node.vm.network :private_network, ip: "192.168.10.11"
-      node.vm.provision "add-hosts", type: "shell", inline: "echo -e '192.168.10.11\tmaster\n192.168.10.12\tworker' >> /etc/hosts"
-      node.vm.provision "install-docker", type: "shell", :path => "../scripts/install-docker.sh"
-      node.vm.provision "install-k8s", type: "shell", :path => "../scripts/install-k8s.sh"
+      node.vm.provision "Add hostnames",type: "shell", inline: "echo -e '192.168.10.11\tmaster\n192.168.10.12\tworker' >> /etc/hosts"
+      node.vm.provision "Install Docker", type: "shell", path: "../scripts/install-docker.sh"
+      node.vm.provision "Install Kubernetes", type: "shell", path: "../scripts/install-k8s.sh"
     end
     
   ### Provision the WOKER Node
@@ -27,9 +27,9 @@ Vagrant.configure("2") do |config|
     end
     node.vm.hostname = "worker"
     node.vm.network :private_network, ip: "192.168.10.12"
-    node.vm.provision "add-hosts", type: "shell", inline: "echo -e '192.168.10.11\tmaster\n192.168.10.12\tworker' >> /etc/hosts"
-    node.vm.provision "install-docker", type: "shell", :path => "../scripts/install-docker.sh"
-    node.vm.provision "install-k8s", type: "shell", :path => "../scripts/install-k8s.sh"
+    node.vm.provision "Add Hostnames", type: "shell", inline: "echo -e '192.168.10.11\tmaster\n192.168.10.12\tworker' >> /etc/hosts"
+    node.vm.provision "Install Docker", type: "shell", path: "../scripts/install-docker.sh"
+    node.vm.provision "Install Kubernetes", type: "shell", path: "../scripts/install-k8s.sh"
   end
   
 end

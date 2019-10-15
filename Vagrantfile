@@ -39,19 +39,20 @@ Vagrant.configure("2") do |config|
         node.vm.hostname = "#{MASTER_NODE_PREFIX}#{i}"
         node.vm.network :private_network, ip: IP_NW + "#{MASTER_IP_START + i - 1}"
         
-        # Add master and worker hostsnames to /etc/hosts file
-        node.vm.provision "setup-master-hosts", 
-          :type => "shell",
-          :path => "scripts/add-hosts.sh",
-          :args => [IP_NW, MASTER_IP_START, NUM_MASTER_NODE, MASTER_NODE_PREFIX, '/etc/hosts']
-        node.vm.provision "setup-worker-hosts",
-          :type => "shell",
-          :path => "scripts/add-hosts.sh",
-          :args => [IP_NW, WORKER_IP_START, NUM_WORKER_NODE, WORKER_NODE_PREFIX, '/etc/hosts']        
-        
-        # Install Docker and Kubernetes packages
-        node.vm.provision "install-docker", type: "shell", :path => "scripts/install-docker.sh"
-        node.vm.provision "install-k8s", type: "shell", :path => "scripts/install-k8s.sh"
+        node.vm.provision "Master nodes hostnames",
+          type: "shell",
+          path: "scripts/add-hosts.sh",
+          args: [IP_NW, MASTER_IP_START, NUM_MASTER_NODE, MASTER_NODE_PREFIX, '/etc/hosts']
+        node.vm.provision "Worker nodes hostnames",
+          type: "shell",
+          path: "scripts/add-hosts.sh",
+          args: [IP_NW, WORKER_IP_START, NUM_WORKER_NODE, WORKER_NODE_PREFIX, '/etc/hosts']        
+        node.vm.provision "Install Docker",
+          type: "shell",
+          path: "scripts/install-docker.sh"
+        node.vm.provision "Install Kubernetes",
+          type: "shell",
+          path: "scripts/install-k8s.sh"
       end
   end
   
@@ -72,18 +73,22 @@ Vagrant.configure("2") do |config|
       node.vm.network :private_network, ip: IP_NW + "#{WORKER_IP_START + i - 1}"
       
       # Add master and worker hostsnames to /etc/hosts file
-      node.vm.provision "setup-master-hosts", 
-        :type => "shell",
-        :path => "scripts/add-hosts.sh",
-        :args => [IP_NW, MASTER_IP_START, NUM_MASTER_NODE, MASTER_NODE_PREFIX, '/etc/hosts']
-      node.vm.provision "setup-worker-hosts",
-        :type => "shell",
-        :path => "scripts/add-hosts.sh",
-        :args => [IP_NW, WORKER_IP_START, NUM_WORKER_NODE, WORKER_NODE_PREFIX, '/etc/hosts']        
+      node.vm.provision "Master nodes hostnames", 
+        type: "shell",
+        path: "scripts/add-hosts.sh",
+        args: [IP_NW, MASTER_IP_START, NUM_MASTER_NODE, MASTER_NODE_PREFIX, '/etc/hosts']
+      node.vm.provision "Worker nodes hostnames",
+        type: "shell",
+        path: "scripts/add-hosts.sh",
+        args: [IP_NW, WORKER_IP_START, NUM_WORKER_NODE, WORKER_NODE_PREFIX, '/etc/hosts']        
       
       # Install Docker and Kubernetes packages
-      node.vm.provision "install-docker", type: "shell", :path => "scripts/install-docker.sh"
-      node.vm.provision "install-k8s", type: "shell", :path => "scripts/install-k8s.sh"
+      node.vm.provision "Install Docker",
+        type: "shell",
+        path: "scripts/install-docker.sh"
+      node.vm.provision "Install Kubernetes",
+        type: "shell",
+        path: "scripts/install-k8s.sh"
     end
   end
   
