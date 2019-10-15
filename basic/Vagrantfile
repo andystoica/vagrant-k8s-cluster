@@ -1,0 +1,35 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.box_check_update = false
+  config.vm.synced_folder "../scripts", "/home/vagrant/scripts"
+
+  ### Provision the MASTER Node
+    config.vm.define "master" do |node|
+      node.vm.provider "virtualbox" do |vb|
+          vb.name = "k8s-master-ubuntu"
+          vb.cpus = 2
+          vb.memory = 2048
+      end
+      node.vm.hostname = "master"
+      node.vm.network :private_network, ip: "192.168.10.11"
+      node.vm.provision "add-hosts", type: "shell", inline: "echo -e '192.168.10.11\tmaster\n192.168.10.12\tworker' >> /etc/hosts"
+      node.vm.provision "install-docker", type: "shell", :path => "../scripts/install-docker.sh"
+      node.vm.provision "install-k8s", type: "shell", :path => "../scripts/install-k8s.sh"
+    end
+    
+  ### Provision the WOKER Node
+  config.vm.define "worker" do |node|
+    node.vm.provider "virtualbox" do |vb|
+        vb.name = "k8s-worker-ubuntu"
+        vb.cpus = 1
+        vb.memory = 1024
+    end
+    node.vm.hostname = "worker"
+    node.vm.network :private_network, ip: "192.168.10.12"
+    node.vm.provision "add-hosts", type: "shell", inline: "echo -e '192.168.10.11\tmaster\n192.168.10.12\tworker' >> /etc/hosts"
+    node.vm.provision "install-docker", type: "shell", :path => "../scripts/install-docker.sh"
+    node.vm.provision "install-k8s", type: "shell", :path => "../scripts/install-k8s.sh"
+  end
+  
+end

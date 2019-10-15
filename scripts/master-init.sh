@@ -21,7 +21,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ### Install cluster networking
 printf '[4/5] Installing Kubernetes network\n'
-kubectl apply -f ./flannel.yaml
+kubectl apply -f flannel.light.yaml
 
 
 ### Generate worker-init.sh script

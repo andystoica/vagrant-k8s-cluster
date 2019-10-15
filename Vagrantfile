@@ -10,7 +10,7 @@ MASTER_CPU = 2                    # Amount of CPU units to be allocated
 MASTER_MEMORY = 2048              # Amount of RAM to be allocated in MB
 
 ### Define Worker Nodes
-NUM_WORKER_NODE = 2               # Number of worker nodes to be provisioned
+NUM_WORKER_NODE = 1               # Number of worker nodes to be provisioned
 WORKER_NODE_PREFIX = "worker-"    # Hostname prefix for worker nodes
 WORKER_IP_START = 21              # First assignable IP in the network range
 WORKER_CPU = 1                    # Amount of CPU units to be allocated
