@@ -29,8 +29,8 @@ kubectl apply -f flannel.light.yaml
 
 ### Generate worker-init.sh script
 printf '[5/5] Generating the worker init script\n'
-printf "#!/bin/bash" > worker-init.sh
-printf "### DO NOT EDIT! This script is generated automatically by master-init.sh.\n\n\n" >> worker-init.sh
+printf "#!/bin/bash/n" > worker-init.sh
+printf "### DO NOT EDIT! This script is generated automatically by master-init.sh.\n" >> worker-init.sh
 printf "sudo " >> worker-init.sh
 kubeadm token create --print-join-command >> worker-init.sh
 chmod +x worker-init.sh

@@ -1,2 +1,4 @@
 #!/bin/bash
-sudo kubeadm join 192.168.10.11:6443 --token tunwz2.nsyv12pye6bdfiw5     --discovery-token-ca-cert-hash sha256:a3079a27e8dacdb6bc96738892ad3f49680a690af0bb968c7e2c8a112e64f062 
+### DO NOT EDIT! This script is generated automatically by master-init.sh.
+
+sudo kubeadm join 192.168.2.11:6443 --token 0qigml.jcocvwm888r2jqfq     --discovery-token-ca-cert-hash sha256:c6f9ff9b9e1a87bf879695f2a5a4e18f0da2766ba11e97c75db623492666f748 
